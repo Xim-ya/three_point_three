@@ -7,3 +7,6 @@
 ### 사용한 패키지
 bounce_tapper : https://pub.dev/packages/bounce_tapper
 
+### 포스팅
+velog : https://velog.io/@ximya_hf/three-point-three-enhance-touch-interaction
+
