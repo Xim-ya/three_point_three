@@ -5,19 +5,19 @@ class _ServiceHelpGuideCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '심야님을 위한 도움말',
-            style: AppTextStyle.headline2.copyWith(
-              color: AppColor.black,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '심야님을 위한 도움말',
+          style: AppTextStyle.headline2.copyWith(
+            color: AppColor.black,
           ),
-          AppGap.dimension20,
-          RoundedShadowCard(
+        ),
+        AppGap.dimension20,
+        BounceTapper(
+          onTap: () {},
+          child: RoundedShadowCard(
             padding: const EdgeInsets.fromLTRB(20, 24, 16, 20),
             child: Column(
               children: <Widget>[
@@ -55,12 +55,17 @@ class _ServiceHelpGuideCard extends StatelessWidget {
                   },
                 ),
                 AppGap.dimension30,
-                ScaleTransitionDetector(
-                  onTap: () {},
+                BounceTapper(
                   child: SizedBox(
                     width: double.infinity,
                     child: FilledButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const DetailPage(),
+                          ),
+                        );
+                      },
                       child: const Text('도움 되는 이야기 더보기'),
                     ),
                   ),
@@ -68,8 +73,8 @@ class _ServiceHelpGuideCard extends StatelessWidget {
               ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

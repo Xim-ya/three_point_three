@@ -1,7 +1,7 @@
 part of '../home_page.dart';
 
-class _AlertContainer extends StatelessWidget {
-  const _AlertContainer({super.key});
+class AlertContainer extends StatelessWidget {
+  const AlertContainer({super.key});
 
   @override
   Widget build(BuildContext context) {

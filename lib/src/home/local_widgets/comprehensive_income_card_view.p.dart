@@ -4,24 +4,23 @@ part of '../home_page.dart';
 /// 종합 소득세 카드 뷰
 ///
 
-class _ComprehensiveIncomeCardView extends StatelessWidget {
-  const _ComprehensiveIncomeCardView({super.key});
+class _TaxRefundStatusCard extends StatelessWidget {
+  const _TaxRefundStatusCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '5월 환급 받는 날',
-            style: AppTextStyle.headline2.copyWith(
-              color: AppColor.black,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '5월 환급 받는 날',
+          style: AppTextStyle.headline2.copyWith(
+            color: AppColor.black,
           ),
-          AppGap.dimension18,
-          RoundedShadowCard(
+        ),
+        AppGap.dimension18,
+        BounceTapper(
+          child: RoundedShadowCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -76,90 +75,94 @@ class _ComprehensiveIncomeCardView extends StatelessWidget {
                   ],
                 ),
                 AppGap.dimension24,
-                Column(
-                  children: [
-                    /// PROGRESS BAR
-                    Stack(
-                      children: <Widget>[
-                        /// BACKGROUND BAR
-                        Container(
-                          height: 8,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: AppColor.grey700,
-                          ),
-                        ),
-
-                        /// ACTIVATED BAR
-                        Positioned(
-                          child: Builder(builder: (context) {
-                            ValueNotifier<double> targetWidth =
-                                ValueNotifier<double>(0);
-                            int currentStep = 1;
-
-                            /// DEVICE WIDTH - PARENT INSET - CARD INSET
-                            final barOriginWidth = AppSize.to.screenWidth - 84;
-
-                            WidgetsBinding.instance.addPostFrameCallback((_) {
-                              targetWidth.value =
-                                  (barOriginWidth / 3) * currentStep;
-                            });
-                            return ValueListenableBuilder(
-                              valueListenable: targetWidth,
-                              builder: (context, width, _) {
-                                return AnimatedOpacity(
-                                  duration: const Duration(milliseconds: 300),
-                                  opacity: width == 0 ? 0 : 1,
-                                  child: AnimatedContainer(
-                                    duration: const Duration(
-                                      milliseconds: 500,
-                                    ),
-                                    height: 8,
-                                    width: width,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: AppColor.blue,
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          }),
-                        ),
-                      ],
-                    ),
-                    AppGap.dimension6,
-
-                    /// STEP TEXT INDICATOR
-                    Builder(builder: (context) {
-                      const List<String> steps = [
-                        '신청 전',
-                        '진행 중',
-                        '삼쩜삼 검토 중',
-                        '신고 완료'
-                      ];
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                KeepAliveView(
+                  child: Column(
+                    children: [
+                      /// PROGRESS BAR
+                      Stack(
                         children: <Widget>[
-                          ...List.generate(
-                            steps.length,
-                            (index) => Text(
-                              steps[index],
-                              style: AppTextStyle.smilBold10.copyWith(
-                                color: AppColor.grey500,
-                              ),
+                          /// BACKGROUND BAR
+                          Container(
+                            height: 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: AppColor.grey700,
                             ),
-                          )
+                          ),
+
+                          /// ACTIVATED BAR
+                          Positioned(
+                            child: Builder(builder: (context) {
+                              ValueNotifier<double> targetWidth =
+                                  ValueNotifier<double>(0);
+                              int currentStep = 1;
+
+                              /// DEVICE WIDTH - PARENT INSET - CARD INSET
+                              final barOriginWidth =
+                                  AppSize.to.screenWidth - 84;
+
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                targetWidth.value =
+                                    (barOriginWidth / 3) * currentStep;
+                              });
+                              return ValueListenableBuilder(
+                                valueListenable: targetWidth,
+                                builder: (context, width, _) {
+                                  return AnimatedOpacity(
+                                    duration: const Duration(milliseconds: 300),
+                                    opacity: width == 0 ? 0 : 1,
+                                    child: AnimatedContainer(
+                                      duration: const Duration(
+                                        milliseconds: 500,
+                                      ),
+                                      height: 8,
+                                      width: 97,
+                                      // width: width,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: AppColor.blue,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            }),
+                          ),
                         ],
-                      );
-                    }),
-                  ],
+                      ),
+                      AppGap.dimension6,
+
+                      /// STEP TEXT INDICATOR
+                      Builder(builder: (context) {
+                        const List<String> steps = [
+                          '신청 전',
+                          '진행 중',
+                          '삼쩜삼 검토 중',
+                          '신고 완료'
+                        ];
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            ...List.generate(
+                              steps.length,
+                              (index) => Text(
+                                steps[index],
+                                style: AppTextStyle.smilBold10.copyWith(
+                                  color: AppColor.grey500,
+                                ),
+                              ),
+                            )
+                          ],
+                        );
+                      }),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
