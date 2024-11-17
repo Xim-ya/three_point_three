@@ -2,6 +2,7 @@
 <p align="center"><img src="https://velog.velcdn.com/images/ximya_hf/post/22d82beb-344b-4ff8-a750-033752cd5615/image.png"/></p><p align="center">bounce_tapper 패키지를 사용하여 삼쩜삼앱에 토스와 유사한 터치 인터렉션(애니메이션)을 적용해보았습니다.</p><br>
 
 # 구현영상
-유튜브 : https://www.youtube.com/watch?v=wI5VkGkXNeo
+유튜브 : https://www.youtube.com/watch?v=wI5VkGkXNeo <br/>
+
 패키지 : https://pub.dev/packages/bounce_tapper
 
